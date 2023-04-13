@@ -1,0 +1,220 @@
+
+%\documentclass[journal, draft]{IEEEtran} %%% draft mode WITHOUT graphics (puts every individual package in draft mode); hyperlinks DO NOT work here
+%\documentclass[journal, draftcls]{IEEEtran} %%% draft mode WITH graphics
+%\documentclass[journal, draftclsnofoot]{IEEEtran} %%% draft mode WITH graphics but without 'date + DRAFT' in footer
+\documentclass[journal]{IEEEtran} %%% final
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% {IEEEtran} is supposed to be compiled with 'pdflatex'
+%%% if you want to use it with 'lualatex' for pgfplots from python
+%%% to not run out of memory
+%%% 'dvips' has to be commented!!
+%%% see this https://texfaq.org/FAQ-nonpdfsp
+%	\ifCLASSINFOpdf
+%	\else
+%	   \usepackage[dvips]{graphicx}
+%	\fi
+%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage[hyphens]{url}
+
+\hyphenation{op-tical net-works semi-conduc-tor}
+
+\usepackage{graphicx}
+
+
+%%% my own additions %%%
+%\usepackage[smaller, printonlyused]{acronym}%%% for nice acroym table
+\usepackage[nolist]{acronym}%%% for acroyms WITHOUT the table
+\usepackage{subcaption}%%% for subfigure (automatically loads {caption} as well
+\usepackage{overpic}%%% to be able to write in latex font over a picture
+\usepackage{siunitx}%%% for easy si units
+\usepackage{amsmath}%%% for equation and align environment, nicely aligned multiline equations 
+\usepackage{amssymb}%%% for math symbols
+%%% messes with ieee template \IEEEsetlabelwidth %\usepackage{enumitem}%%% for enumerate environment but with a, b, c (https://tex.stackexchange.com/questions/129951/enumerate-tag-using-the-alphabet-instead-of-numbers)
+\usepackage{cite}%%% for citation range [3-6] instead of [3], [4], [5], [6]
+%%% the lidar market overview
+\usepackage{multirow}%%% for tabular with multi row
+\usepackage{float}%%% to be able to enforce location of table with the [H] option
+\usepackage{makecell}%%% needed for cornis cnn tikz figure
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% used for lidar design space %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{environ}
+\makeatletter
+\newsavebox{\measure@tikzpicture}
+\NewEnviron{scaletikzpicturetowidth}[1]{%
+  \def\tikz@width{#1}%
+  \def\tikzscale{1}\begin{lrbox}{\measure@tikzpicture}%
+  \BODY
+  \end{lrbox}%
+  \pgfmathparse{#1/\wd\measure@tikzpicture}%
+  \edef\tikzscale{\pgfmathresult}%
+  \BODY
+}
+\makeatother
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{pdfpages}%%% to include pdf pages in lidar market overview
+\usepackage{pgfplots}%%% including .pgf plots from matplotlib (python); I guess it also loads {pgf} and {tikz}
+\usepackage{tikz-3dplot}%%% tikz 3d plotting, formally known as \usepackage{3dplot}, can still be found on web
+\pgfplotsset{compat=1.16}%%% suggested by pgfplots package 
+\usetikzlibrary{calc, quotes, angles, arrows.meta}%%% this is needed for nice angles; arrows.meta from stress strain f arrows in mems part
+%\usetikzlibrary{shapes.geometric, arrows}%%% this is needed for flow charts
+%\usetikzlibrary{patterns}%%% this is needed for gaussian
+
+
+%%% for nicer hyperlinks! %%%
+%% Hyperlinks im Dokument; muss als eines der letzten Pakete geladen werden
+\usepackage[pdfstartview=FitH,      % Oeffnen mit fit width
+            breaklinks=true,        % Umbrueche in Links, nur bei pdflatex default
+            bookmarksopen=true,     % aufgeklappte Bookmarks
+            bookmarksnumbered=true, % Kapitelnummerierung in bookmarks
+            hidelinks]{hyperref}	%%% HIDE LINKS HABE ICH EINGEFUEGT!
+%\hypersetup{			%%% hier definiere ich
+%    colorlinks,			%%% die farbe fuer clickable
+%    linkcolor={red!80!black},	%%% words instead of the 
+%    citecolor={green!50!black},	%%% ugly boxes
+%    urlcolor={blue!80!black}
+%}
+
+%%% glossaries has to be loaded after hyperref
+%%% if you wanna use clickable entries, see manual in referencer
+\usepackage[nopostdot]{glossaries}
+
+
+
+%% Ibeo Colors
+\definecolor{R}{rgb}{0.819608, 0.054902, 0.133333}%Ibeo Red
+\definecolor{W}{rgb}{1, 1, 1}%Ibeo White
+\definecolor{G}{rgb}{0.698039, 0.682353, 0.686275}%Ibeo Gray
+\definecolor{B}{rgb}{0.2, 0.2, 0.2}%Ibeo Black
+
+%% fast typing
+\newcommand{\ie}{i.e.\ }
+\newcommand{\Ie}{I.e.\ }
+\newcommand{\eg}{e.g.\ }
+\newcommand{\Eg}{E.g.\ } 
+\newcommand{\cf}{cf.\ } 
+
+%% math commands
+\DeclareMathOperator\erf{erf}
+\DeclareMathOperator\erfc{erfc}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+%%% used for heating %%%
+%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\dC}{\unit{\degreeCelsius}}
+
+
+
+
+\begin{document}
+
+%%% input table of contents
+%\tableofcontents
+%%% input acronyms table
+%\section*{Acronyms} %%% include if caption wanted
+%%% if \ac{[...]} is used, \input{acronyms} has to always be here 
+\input{acronyms} %%% \usepackage[!!] defines if table is included here or not
+
+
+\title{Front Cover Thermodynamics}
+
+
+\author{Tobias Rybka, Hanno Holzh{\"u}ter, Georg Schneider and Holger Blume%
+
+%\thanks{Thanks Ibeo and IMS Uni Hannover ??}%
+
+\thanks{T. Rybka (e-mail: tobias.rybka@ibeo-as.com-hannover.de) and G.
+Schneider are with Ibeo AS, Merkurring 60-62, 22143 Hamburg, Germany}%
+
+\thanks{H. Holzh{\"u}ter is with Ibeo AS, Merkurring 60-62, 22143 Hamburg,
+Germany and the Institute of Microelectronic Systems (IMS) at Leibniz
+University Hannover, Appelstraße 4, 30167 Hanover, Germany (e-mail:
+hanno.holzhueter@ims.uni-hannover.de)}%
+
+%\thanks{C. Hofs{\"a}{\ss} is with Ibeo AS, Merkurring 60-62, 22143 Hamburg,
+%Germany}%
+
+\thanks{H. Blume is the Head of Architectures and Systems Group at the
+Institute of Microelectronic Systems (IMS) at Leibniz University Hannover,
+Appelstraße 4, 30167 Hanover, Germany}%
+}
+
+\markboth{Journal of \LaTeX\ Class Files, Vol. 14, No. 8, August 2015}
+{Shell \MakeLowercase{\textit{et al.}}: Bare Demo of IEEEtran.cls for IEEE Journals}
+\maketitle
+
+\begin{abstract}
+Deicing of an automotive sensor for autonomous driving is necessary to provide
+a clear sight. The heat generated by a sensor itself typically is not
+sufficient for defrosting ice accumulated on the outer surface at low
+temperatures and high wind speeds. This results in a need for integrating an
+active heating element in the system. Finding the right heating layout can be a
+complex problem that is shaped by the requirement to maintain the optical
+quality during heating and to achieve a high heating performance in parallel.
+Every design must be verified to meet this goal and the verification is usually
+achieved by a sophisticated simulation or experiment. The aim of this study is
+to ease the verification process by providing a description of the heat flow in
+a plane front cover design with different heating layouts and finding a
+(semi-)analytical expression for the surface temperature as a function of the
+heating power, ambient temperature and wind speed. Only steady conditions and
+temperatures are considered. The model accuracy is demonstrated for the Ibeo
+NEXT LiDAR sensor. In addition, a numerical FEM analysis is performed to verify
+the results in a 3D model.
+% \\
+% A single paragraph of about 200 words maximum. For research articles,
+% abstracts should give a pertinent overview of the work. We strongly encourage
+% authors to use the following style of structured abstracts, but without
+% headings: (1) Background: Place the question addressed in a broad context and
+% highlight the purpose of the study; (2) Methods: Describe briefly the main
+% methods or treatments applied; (3) Results: Summarize the article's main
+% findings; and (4) Conclusion: Indicate the main conclusions or
+% interpretations. The abstract should be an objective representation of the
+% article, it must not contain results which are not presented and
+% substantiated in the main text and should not exaggerate the main
+% conclusions.
+\end{abstract}
+
+\begin{IEEEkeywords}
+sensor front cover heating; deicing; all weather sensing; automotive LiDAR
+\end{IEEEkeywords}
+
+\IEEEpeerreviewmaketitle
+
+
+\input{heating_files/1_content_en.tex}
+\input{heating_files/2_appendix.tex}
+
+
+
+% bib stuff
+%\bibliographystyle{unsrtnat} %%% to have citations ordered by appearance
+\bibliographystyle{IEEEtran}
+\bibliography{IEEEabrv, /home/hh/promo/literature/my_latest_referencer}
+%\bibliography{/home/hh/promo/literature/my_latest_referencer}
+
+
+%%%%%	%%% biographies
+%%%%%	
+%%%%%	\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{/home/hh/promo/conferences/hanno_pics_2020-02-17/HANNO_DSC1199_head_cutout.png}}]{Hanno Holzh{\"u}ter}
+%%%%%	works as a research project manager at Ibeo Automotive Systems and is also a
+%%%%%	PhD student with focus on digital signal processing in LiDAR sensors at the
+%%%%%	Institute for Microelectronic Systems (IMS), Leibniz University Hanover and
+%%%%%	Ibeo AS. Before joining Ibeo in 2016, Hanno worked as a scientific assistant in
+%%%%%	the engineering education research group at Technical University of Hamburg
+%%%%%	after finishing his master in 2015 in physics at the Georg-August-University
+%%%%%	G{\"o}ttingen.
+%%%%%	\end{IEEEbiography}
+
+\end{document}
+
+
+
+
+
+
+
+

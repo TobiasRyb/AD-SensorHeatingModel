@@ -1,0 +1,22 @@
+\providecommand{\bysame}{\leavevmode\hbox to3em{\hrulefill}\thinspace}
+\providecommand{\MR}{\relax\ifhmode\unskip\space\fi MR }
+% \MRhref is called by the amsart/book/proc definition of \MR.
+\providecommand{\MRhref}[2]{%
+  \href{http://www.ams.org/mathscinet-getitem?mr=#1}{#2}
+}
+\providecommand{\href}[2]{#2}
+\begin{thebibliography}{Hah75MM}
+
+\bibitem[Cen02]{Cengel2002}
+Y. Cengel, \emph{Heat Transfer: A Practical Approach}, SEM, 2002.
+
+\bibitem[Cen14]{Cengel2014}
+Y. Cengel und A. Ghajar, \emph{Heat and Mass Transfer: Fundamentals and
+  Application}, McGraw-Hill Education, 2014.
+
+\bibitem[Hah75]{Hahne1975}
+E. Hahne und U. Grigull, \emph{{Formfaktor und Formwiderstand der stationären
+  mehrdimensionalen Wärmeleitung}}, Int. J. Heat Mass Transfer \textbf{18},
+  751--767 (1975).
+
+\end{thebibliography}

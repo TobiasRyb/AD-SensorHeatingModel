@@ -1,0 +1,18 @@
+\babel@toc {english}{}
+\thispagestyle {fancy}
+\contentsline {section}{\numberline {i}Index of Abbreviations and Terms}{3}{section.1}%
+\contentsline {section}{\numberline {ii}Index of Figures}{3}{section.2}%
+\contentsline {section}{\numberline {iii}Index of Tables}{3}{section.3}%
+\contentsline {section}{\numberline {1}Scope}{4}{section.chX.1}%
+\contentsline {section}{\numberline {2}Generic Thermodynamic Model}{5}{section.chX.2}%
+\contentsline {subsection}{\numberline {2.1}Thermodynamic Model}{5}{subsection.chX.2.1}%
+\contentsline {subsection}{\numberline {2.2}Heating Plate}{7}{subsection.chX.2.2}%
+\contentsline {paragraph}{Voltage and Duty Cycle}{10}{paragraph*.11}%
+\contentsline {subsection}{\numberline {2.3}Relationship between Heat Transfer Coefficient and Wind Speed}{11}{subsection.chX.2.3}%
+\contentsline {subsection}{\numberline {2.4}Heating Wire Architecture}{12}{subsection.chX.2.4}%
+\contentsline {section}{\numberline {3}Front Cover Heating of the NEXT LiDAR Sensor}{13}{section.chX.3}%
+\contentsline {section}{\numberline {A}Appendix}{15}{appendix.A}%
+\contentsline {subsection}{\numberline {A.1}Passive Front Cover Heating}{15}{subsection.A.1}%
+\contentsline {subsection}{\numberline {A.2}Heating Plate}{16}{subsection.A.2}%
+\contentsline {subsection}{\numberline {A.3}3-D Thermal Simulation}{16}{subsection.A.3}%
+\clearpage 

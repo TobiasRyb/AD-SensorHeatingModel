@@ -1,0 +1,98 @@
+\documentclass[
+	engl,            % Document language English, Default is German
+	%nofigindex,     % Hide Index of Figures
+	%notabindex,     % Hide Index of Tables
+	%centralgloss,   % Use central glossary
+	%noabbindex,     % Hide Index of Abbreviations and Terms
+	%bibtex,         % Use Bibtex
+	%notoc,          % Hide Table of Contents
+	%norelease,      % Hide Release Info
+	%nohistory       % Hide Change History
+]{ibeo-doc}
+
+% Ibeo Document Template
+% Based on FLT-QM-003, as at 06. Jan 2020
+% In case of suggestions please contact Georg Schneider
+
+
+%Document properties, can be left empty
+\docTitle{Ibeo NEXT - Front Cover Thermodynamics}
+\docShortTitle{}
+\docType{}
+\docOrg{}
+\docConsNo{}
+\docDateVersion{Sept 2021 (v1)}
+\docStatus{}
+\docArchive{GIT}
+\docScope{Ibeo AS GmbH}
+\docConfidentiality{confidential}
+\docRevision{}
+
+%%% Only edit the lines between \begin...\end
+\begin{filecontents*}[overwrite]{releaseInfo.tex}
+	Responsible & Rybka & Tobias & Developer & \\ \hline
+	Reviewer & Thomas, Derk, Kay, Marek  &  &  & \\ 
+\end{filecontents*}
+\begin{filecontents*}[overwrite]{changeHistory.tex}
+Sept 8, 2021	& 1.0 & First draft & ToRy  
+\end{filecontents*}
+%\begin{filecontents*}[overwrite]{terms.tex}
+%	&   \\ \hline
+%	&   \\ \hline
+%	&   \\ \hline
+%	&   \\
+%\end{filecontents*}
+\begin{filecontents*}[overwrite]{abbreviations.tex}
+\(\dot{Q}\)	& Heat transfer rate   \\ \hline
+\(P\)	& Dissipated power of the sensor \\ \hline
+\(A\)	& Front cover area \\ \hline
+\(A_{h}\) & Front cover heating area  \\ \hline
+\(k\) & Thermal conductivity \\ \hline
+\(T_{hs}\) & Temperature of the heating source \\ \hline
+\(T_{o}\) & Ambient temperature \\ \hline
+\(T_i\) & Temperature in the sensor\\ \hline
+\(T_{surf}\) & Surface temperature
+
+\end{filecontents*}
+
+%%% Packages %%%
+\usepackage{siunitx}
+\usepackage{enumitem}
+\setlist{nolistsep}
+\usepackage[framemethod=TikZ]{mdframed}
+\mdfdefinestyle{MyFrame}{%
+    linecolor=black,
+    outerlinewidth=0.5pt,
+    roundcorner=20pt,
+    innertopmargin=\baselineskip,
+    innerbottommargin=\baselineskip,
+    innerrightmargin=2pt,
+    innerleftmargin=20pt}
+    
+\usepackage{tabularx}
+
+
+%%% Define Commands %%%
+\newcommand{\dC}{\unit{\degreeCelsius}}
+
+\begin{document}
+%Content
+\include{1_content_en}
+
+%Appendix
+\clearpage
+\addtocontents{toc}{\protect\clearpage}% Seitenumbruch im Inhaltsverzeichnis
+\appendix
+%\section{Appendix}
+\include{2_appendix}
+%\addcontentsline{toc}{Appendix}{Appendix}
+
+%\addcontentsline{toc}{chapter}{Bibliography}
+%\bibliographystyle{amsalphaVersionLSLeitenstorfer_mod}
+%\bibliography{library}
+
+\bibliographystyle{VersionTRybka}
+\bibliography{library} % this prints the bibliography section based on the \cite commands
+
+%\include{2_appendix}
+\end{document}
